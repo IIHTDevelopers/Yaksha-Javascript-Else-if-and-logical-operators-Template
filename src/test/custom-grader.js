@@ -73,7 +73,7 @@ function writeOutputFiles(result, fileType) {
         xml: "./yaksha-test-cases.xml"
     };
 
-    let resultStatus = result.status === 'Pass' ? 'PASS' : 'FAIL';
+    let resultStatus = result.status === 'Passed' ? 'PASS' : 'FAIL';
     let output = `${result.methodName}=${resultStatus}\n`;
 
     let outputFilePath = outputFiles[fileType];
@@ -84,7 +84,7 @@ function writeOutputFiles(result, fileType) {
 
 // Function to check if ternary operator is used
 function checkTernaryOperatorUsage(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let ternaryUsed = false;
 
@@ -105,7 +105,7 @@ function checkTernaryOperatorUsage(ast) {
     });
 
     if (!ternaryUsed) {
-        result = 'Fail';
+        result = 'Failed';
         feedback.push("You must use the ternary operator (? :) for conditional expressions.");
     }
 
@@ -116,7 +116,7 @@ function checkTernaryOperatorUsage(ast) {
         'TernaryOperatorUsage',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -160,7 +160,7 @@ function gradeAssignment() {
         console.log(resultsToSend);
 
         // Log the test result in yellow for pass and red for fail using ANSI codes
-        if (testCaseResult.status === 'Pass') {
+        if (testCaseResult.status === 'Passed') {
             console.log(`\x1b[33m${testCaseResult.methodName}: Pass\x1b[0m`); // Yellow for pass
         } else {
             console.log(`\x1b[31m${testCaseResult.methodName}: Fail\x1b[0m`); // Red for fail
